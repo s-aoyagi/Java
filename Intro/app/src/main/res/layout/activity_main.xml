@@ -12,5 +12,32 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="こんにちは！あなたの名前を教えてください。"
+        android:id="@+id/textView"
+        android:textSize="16dp"
+        android:textIsSelectable="false"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/editText01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ここに名前を入力"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:maxLines="1"
+        android:maxLength="20">
+    </EditText>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="入力"
+        android:id="@+id/button01"
+        android:layout_below="@+id/editText01"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp" />
+
 </RelativeLayout>
