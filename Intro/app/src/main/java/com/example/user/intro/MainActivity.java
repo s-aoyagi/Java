@@ -1,38 +1,52 @@
 package com.example.user.intro;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.view.View.OnKeyListener;
-
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
+    private InputMethodManager inputMethodManager;
+    private LinearLayout mainLayout;
+    private EditText editText;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button01=(Button)findViewById(R.id.button01);
-        button01.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                onEnter();
-            }
-        });
+        //EditTextオブジェクト
+        editText = (EditText)findViewById(R.id.editText);
+        //レイアウトオブジェクト
+        mainLayout = (LinearLayout)findViewById(R.id.mainLayout);
+        //キーボード表示を制御
+        inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        EditText editText01=(EditText)findViewById(R.id.editText01);
-        editText01.setOnKeyListener(new View.OnKeyListener() {
+        button = (Button)findViewById(R.id.button);
+        button.setOnClickListener((new View.OnClickListener() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                TextView textView01 = (TextView)findViewById(R.id.textView);
-                textView01.setText("入力された");
-                return false;
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClassName("com.example.user.intro","com.example.user.intro.SubActivity");
+                intent.putExtra("sendText",editText.getText().toString());
+                startActivity(intent);
             }
-        });
+        }));
+    }
+
+    //キーボードを隠すためのイベント
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        //キーボードを隠す
+        inputMethodManager.hideSoftInputFromWindow(mainLayout.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        mainLayout.requestFocus();
+        return false;
     }
 }
