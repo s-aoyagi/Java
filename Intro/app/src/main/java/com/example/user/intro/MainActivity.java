@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private InputMethodManager inputMethodManager;
     private LinearLayout mainLayout;
     private EditText editText;
+    private EditText editText2;
     private Button button;
 
     @Override
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         //EditTextオブジェクト
         editText = (EditText)findViewById(R.id.editText);
+        editText2 = (EditText)findViewById(R.id.editText2);
         //レイアウトオブジェクト
         mainLayout = (LinearLayout)findViewById(R.id.mainLayout);
         //キーボード表示を制御
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent=new Intent();
                 intent.setClassName("com.example.user.intro","com.example.user.intro.SubActivity");
                 intent.putExtra("sendText",editText.getText().toString());
+                intent.putExtra("sendAge",Integer.parseInt(editText2.getText().toString()));
                 startActivity(intent);
             }
         }));
