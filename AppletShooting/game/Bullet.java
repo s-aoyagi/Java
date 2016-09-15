@@ -4,26 +4,25 @@ import java.awt.Dimension;
 
 class Bullet implements Runnable
 {
-	int width = 24;   // 弾の幅
-	int no = 15;   // 弾の全数
-	int no_1 = 5;   // 一度に撃てる弾数
-	int ct = 0;   // 現在の弾の数
-	int x[], y[];   // 弾の位置
-	int v = 30;   // 弾の速さ
+	int width = 24; // 弾の幅
+	int no = 15; // 弾の全数
+	int no_1 = 5; // 一度に撃てる弾数
+	int ct = 0; // 現在の弾の数
+	int x[], y[]; // 弾の位置
+	int v = 30; // 弾の速さ
 	boolean fire = false;
-	boolean ex[];   // 弾の存在
+	boolean ex[]; // 弾の存在
 	boolean in_game = true;
 	Thread td;
 	Dimension size;
-	My my;
+	Player player;
 	// コンストラクタ
-	public Bullet(Dimension size1, My my1)
-	{
+	public Bullet(Dimension size1, Player player1) {
 		size = size1;
-		my   = my1;
+		player = player1;
 		// 初期設定
-		x  = new int [no];
-		y  = new int [no];
+		x = new int [no];
+		y = new int [no];
 		ex = new boolean [no];
 		for (int i1 = 0; i1 < no; i1++)
 			ex[i1] = false;
@@ -32,11 +31,10 @@ class Bullet implements Runnable
 		td.start();
 	}
 	// スレッドの実行
-	public void run()
-	{
+	public void run() {
 		while (in_game) {
 			try {
-				td.sleep(30);
+				Thread.sleep(30);
 			}
 			catch (InterruptedException e) {}
 			// 弾の移動
@@ -53,8 +51,8 @@ class Bullet implements Runnable
 					boolean sw = true;
 					for (int i1 = 0; i1 < no && sw; i1++) {
 						if (!ex[i1]) {
-							x[i1]  = my.x + my.width / 2 - width / 2;
-							y[i1]  = my.y - width;
+							x[i1]  = player.x + player.width / 2 - width / 2;
+							y[i1]  = player.y - width;
 							ex[i1] = true;
 							sw     = false;
 						}
@@ -77,8 +75,8 @@ class Bullet implements Runnable
 			boolean sw = true;
 			for (int i1 = 0; i1 < no && sw; i1++) {
 				if (!ex[i1]) {
-					x[i1]  = my.x + my.width / 2 - width / 2;
-					y[i1]  = my.y - width;
+					x[i1]  = player.x + player.width / 2 - width / 2;
+					y[i1]  = player.y - width;
 					ex[i1] = true;
 					sw     = false;
 				}

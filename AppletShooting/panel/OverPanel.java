@@ -13,16 +13,14 @@ import java.net.URL;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class OverPanel extends JPanel implements ActionListener
-{
+public class OverPanel extends JPanel implements ActionListener {
 	AppletContext ac;   // アプレットのコンテキスト
 	URL cb;   // HTML ファイルが存在する URL
 	Dimension size;   // アプレットの大きさ
 	MainPanel mp;
 	JButton bt1, bt2, bt3;
 			// コンストラクタ
-	public OverPanel(AppletContext ac1, URL cb1, Dimension size1, MainPanel mp1)
-	{
+	public OverPanel(AppletContext ac1, URL cb1, Dimension size1, MainPanel mp1) {
 		ac   = ac1;
 		cb   = cb1;
 		size = size1;
@@ -70,8 +68,7 @@ public class OverPanel extends JPanel implements ActionListener
 
 	}
 			// 描画
-	public void paintComponent(Graphics g)
-	{
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);   // 親クラスの描画
 		Font f = new Font("SansSerif", Font.BOLD, 40);
 		FontMetrics fm = g.getFontMetrics(f);
@@ -81,8 +78,7 @@ public class OverPanel extends JPanel implements ActionListener
 		g.drawString(str, size.width/2-w/2, size.height/2);
 	}
 			// ボタンがクリックされたときの処理
-	public void actionPerformed(ActionEvent e)
-	{
+	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == bt1) {   // ゲーム終了
 			mp.state = 4;
 			bt1.setEnabled(false);

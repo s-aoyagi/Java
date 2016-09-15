@@ -7,14 +7,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
 
-class Boss implements Runnable
-{
-	Image image;   // ボス画像
-	int width = 66;   // ボスの幅
-	int height = 95;   // ボスの高さ
-	int x, y;   // ボスの位置
-	int h_ct = 0;   // 命中した弾の数
-	int h_max = 5;   // 耐えうる命中した弾の数
+class Boss implements Runnable {
+	Image image; // ボス画像
+	int width = 95; // ボスの幅
+	int height = 66; // ボスの高さ
+	int x, y; // ボスの位置
+	int h_ct = 0; // 命中した弾の数
+	int h_max = 5; // 耐えられる命中した弾の数
 	Thread td;
 	boolean in_game = true;
 	int ptn1[][] = {{-5, 0, 50}, {0, 20, 55}, {5, 0, 105}, {0, -20, 110}};
@@ -23,19 +22,17 @@ class Boss implements Runnable
 	int ct = 1;
 	Random rn;
 	GamePanel gp;
-	Bullet_b bl;   // 弾
+	Bullet_b bl; // 弾
 	// コンストラクタ
-	public Boss(AppletContext ac, URL cb, Dimension size, Random rn1, GamePanel gp1)
-	{
+	public Boss(AppletContext ac, URL cb, Dimension size, Random rn1, GamePanel gp1) {
 		rn = rn1;
 		gp = gp1;
 		// ボス画像の読み込み
 		try {
-			URL url = new URL(cb + "game/image/boss.gif");
+			URL url = new URL(cb + "image/boss.png");
 			image = ac.getImage(url);
 		}
-		catch (MalformedURLException e)
-		{
+		catch (MalformedURLException e) {
 			System.out.println("Bad URL");
 		}
 		// ボスの初期位置
@@ -49,14 +46,13 @@ class Boss implements Runnable
 		td = new Thread(this);
 		td.start();
 		// 弾の発射
-		bl = new Bullet_b(size, this, gp.my);
+		bl = new Bullet_b(size, this, gp.player);
 	}
 	// スレッドの実行
-	public void run()
-	{
+	public void run() {
 		while (in_game) {
 			try {
-				td.sleep(50);
+				Thread.sleep(50);
 			}
 			catch (InterruptedException e) {}
 			ct++;

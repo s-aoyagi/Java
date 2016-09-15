@@ -18,8 +18,7 @@ class Bullet_e implements Runnable
 	Random rn;
 	Enemy em;
 	// コンストラクタ
-	public Bullet_e(Dimension size1, Random rn1, Enemy em1)
-	{
+	public Bullet_e(Dimension size1, Random rn1, Enemy em1) {
 		size = size1;
 		rn   = rn1;
 		em   = em1;
@@ -33,11 +32,10 @@ class Bullet_e implements Runnable
 		td.start();
 	}
 	// スレッドの実行
-	public void run()
-	{
+	public void run() {
 		while (in_game) {
 			try {
-				td.sleep(50);
+				Thread.sleep(50);
 			}
 			catch (InterruptedException e) {}
 			// 弾の数

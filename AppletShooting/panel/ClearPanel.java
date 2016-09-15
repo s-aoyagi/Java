@@ -21,8 +21,7 @@ public class ClearPanel extends JPanel implements ActionListener
 	MainPanel mp;
 	JButton bt1, bt2;
 	// コンストラクタ
-	public ClearPanel(AppletContext ac1, URL cb1, Dimension size1, MainPanel mp1)
-	{
+	public ClearPanel(AppletContext ac1, URL cb1, Dimension size1, MainPanel mp1) {
 		ac   = ac1;
 		cb   = cb1;
 		size = size1;
@@ -70,8 +69,7 @@ public class ClearPanel extends JPanel implements ActionListener
 		g.drawString(str, size.width/2-w/2, size.height/2);
 	}
 	// ボタンがクリックされたときの処理
-	public void actionPerformed(ActionEvent e)
-	{
+	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == bt1) {
 			mp.state = 4;
 			bt1.setEnabled(false);

@@ -9,25 +9,23 @@ import java.util.Random;
 
 class Enemy
 {
-	Image image;   // 敵機の画像
-	int width = 27;   // 敵機の幅
-	int height = 41;   // 敵機の高さ
-	int x, y;   // 敵機の位置
-	Boss bs;   // ボス
-	int n;   // 敵機番号
-	Bullet_e bl;   // 弾
+	Image image; // 敵機の画像
+	int width = 45; // 敵機の幅
+	int height = 51; // 敵機の高さ
+	int x, y; // 敵機の位置
+	Boss bs; // ボス
+	int n; // 敵機番号
+	Bullet_e bl; // 弾
 	// コンストラクタ
-	public Enemy(AppletContext ac, URL cb, Boss bs1, int n1, Dimension size, Random rn)
-	{
+	public Enemy(AppletContext ac, URL cb, Boss bs1, int n1, Dimension size, Random rn) {
 		bs = bs1;
 		n  = n1;
 		// 敵機画像の読み込み
 		try {
-			URL url = new URL(cb + "game/image/enemy.gif");
+			URL url = new URL(cb + "image/enemy.png");
 			image = ac.getImage(url);
 		}
-		catch (MalformedURLException e)
-		{
+		catch (MalformedURLException e) {
 			System.out.println("Bad URL");
 		}
 		// 敵機の初期位置

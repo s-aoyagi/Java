@@ -5,29 +5,28 @@ import java.util.Random;
 
 class Bullet_b implements Runnable
 {
-	int width = 24;   // 弾の幅
-	int no = 15;   // 弾の全数
-	int x[], y[];   // 弾の位置
-	int v = 30;   // 弾の速さ
-	int vx[], vy[];   // 横及び縦方向の弾の速さ
-	int pr = 5;   // 弾の発射間隔
+	int width = 24; // 弾の幅
+	int no = 15; // 弾の全数
+	int x[], y[]; // 弾の位置
+	int v = 30; // 弾の速さ
+	int vx[], vy[]; // 横及び縦方向の弾の速さ
+	int pr = 5; // 弾の発射間隔
 	int ct = 0;
-	boolean ex[];   // 弾の存在
+	boolean ex[]; // 弾の存在
 	boolean in_game = true;
 	Thread td;
 	Dimension size;
 	Random rn;
 	Boss bs;
-	My my;
+	Player player;
 	// コンストラクタ
-	public Bullet_b(Dimension size1, Boss bs1, My my1)
-	{
+	public Bullet_b(Dimension size1, Boss bs1, Player player1) {
 		size = size1;
 		bs   = bs1;
-		my   = my1;
+		player   = player1;
 		// 初期設定と最初の弾の発射
-		x  = new int [no];
-		y  = new int [no];
+		x = new int [no];
+		y = new int [no];
 		vx = new int [no];
 		vy = new int [no];
 		ex = new boolean [no];
@@ -39,11 +38,10 @@ class Bullet_b implements Runnable
 		td.start();
 	}
 	// スレッドの実行
-	public void run()
-	{
+	public void run() {
 		while (in_game) {
 			try {
-				td.sleep(100);
+				Thread.sleep(100);
 			}
 			catch (InterruptedException e) {}
 			// 弾の移動
@@ -62,18 +60,17 @@ class Bullet_b implements Runnable
 		}
 	}
 	// 弾の発射
-	void shoot()
-	{
+	void shoot() {
 		boolean sw = true;
 		int xt, yt;
 		for (int i1 = 1; i1 < no && sw; i1++) {
 			if (!ex[i1]) {
-				sw     = false;
+				sw = false;
 				ex[i1] = true;
-				x[i1]  = bs.x + bs.width / 2 - width / 2;
-				y[i1]  = bs.y + bs.height;
-				yt     = my.y + my.height / 2 - (y[i1] + width / 2);
-				xt     = my.x + my.width / 2 - (x[i1] + width / 2);
+				x[i1] = bs.x + bs.width / 2 - width / 2;
+				y[i1] = bs.y + bs.height;
+				yt = player.y + player.height / 2 - (y[i1] + width / 2);
+				xt = player.x + player.width / 2 - (x[i1] + width / 2);
 				double ang = Math.atan2(yt, xt);
 				vx[i1] = (int)(v * Math.cos(ang) + 0.5);
 				vy[i1] = (int)(v * Math.sin(ang) + 0.5);
